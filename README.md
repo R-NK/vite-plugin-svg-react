@@ -15,3 +15,28 @@ module.exports = {
   ]
 }
 ```
+
+```tsx
+import React from 'react';
+import SkipIcon from '/@assets/skip_next-24px.svg';
+
+const Component = (): JSX.Element => (
+    return (
+        <SkipIcon width={'4rem'} />
+    )
+)
+```
+
+## Typescript
+```typescript
+// react-app-env.d.ts
+declare module '*.svg' {
+  import * as React from 'react';
+
+  export const ReactComponent: React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & { title?: string }
+  >;
+
+  export default ReactComponent;
+}
+```
