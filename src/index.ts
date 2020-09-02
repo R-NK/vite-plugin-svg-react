@@ -1,22 +1,18 @@
-import { Transform } from 'vite';
+import type { Plugin } from 'vite';
+import { reactSvgTransform } from './transform';
 
-const reactSvgTransform: Transform = {
-  test: ({ path, query, isBuild }) => {
-    const isSVG = path.endsWith('.svg');
-    if (isSVG) {
-      console.log('isBuild', isBuild);
-      console.log('path', path);
-      console.log('query', query);
-    }
-    return isSVG;
-  },
-  transform: ({ code, path }) => {
-    console.log('code', code);
-    console.log('path', path);
-    return code;
-  },
+type Options = {
+  useSVGO?: boolean;
 };
 
-module.exports = {
-  transforms: [reactSvgTransform],
+const createPlugin = (userOptions: Options): Plugin => {
+  const options: Options = {
+    useSVGO: false,
+    ...userOptions,
+  };
+  return {
+    transforms: [reactSvgTransform(options)],
+  };
 };
+
+export default createPlugin;
