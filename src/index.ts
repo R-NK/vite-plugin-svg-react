@@ -1,9 +1,5 @@
 import type { Plugin } from 'vite';
-import { reactSvgTransform } from './transform';
-
-type Options = {
-  useSVGO?: boolean;
-};
+import { reactSvgTransform, Options } from './transform';
 
 const createPlugin = (userOptions: Options): Plugin => {
   const options: Options = {
